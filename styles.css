@@ -1,63 +1,106 @@
+/* ===================================================
+   PASTA
+================================================== */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #ffeefc;
-    margin: 0;
-    padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #ffe6f2;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-#cake {
-    display: block;
-    position: relative;
-    margin: -10em auto 0 auto;
+.cake {
+  position: relative;
+  margin: 100px auto 20px auto;
+  width: 2px;
+  height: 1px;
+  background: #ff99cc;
+  border-radius: 10px;
 }
 
-.candle {
-    background: #fff;
-    border-radius: 10px;
-    position: absolute;
-    top: 228px;
-    left: 50%;
-    margin-left: -2.4px;
-    margin-top: -8.33333333px;
-    width: 5px;
-    height: 35px;
-    transform: translateY(-300px);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-animation: in 600ms 6s ease-out forwards;
-    animation: in 600ms 6s ease-out forwards;
+/* ===================================================
+   MUM
+================================================== */
+.velas {
+  background: #ffffff;
+  border-radius: 5px;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  margin-left: -3px;
+  width: 6px;
+  height: 40px;
 }
 
-.candle:after {
-    top: 25%;
-    left: 0;
+.velas:after,
+.velas:before {
+  background: rgba(255, 0, 0, 0.4);
+  content: ""; 
+  position: absolute;
+  width: 100%; 
+  height: 3px;
 }
 
-.candle:before {
-    top: 45%;
-    left: 0;
+.velas:after {
+  top: 25%; 
+  left: 0;
+}
+.velas:before {
+  top: 45%; 
+  left: 0;
 }
 
-.fire {
-    border-radius: 100%;
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    margin-left: -2.6px;
-    width: 6.667px;
-    height: 18px;
-    background: #ff0;
+/* ===================================================
+   ALEV
+================================================== */
+.fuego {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -3px;
+  width: 6px;
+  height: 10px;
+  background: radial-gradient(ellipse at center, #ff9 0%, #ff6600 100%);
+  border-radius: 100%;
+  animation: flameFlicker 1s infinite alternate;
 }
 
-#blow {
-    font-size: 20px;
-    margin: 20px;
+@keyframes flameFlicker {
+  from { transform: scaleY(1) translateY(0px) }
+  to { transform: scaleY(1.3) translateY(-3px) }
+}
+/* Mumun düşme animasyonu */
+.fuego.falling {
+  position: relative;
+  animation: fallDown 1s ease forwards;
 }
 
-#gift {
-    display: none;
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff6b6b;
+@keyframes fallDown {
+  0% {
+    top: 0;
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 100px;
+    transform: rotate(45deg);
+  }
 }
+
+/* ===================================================
+   MESAJLAR
+================================================== */
+.message {
+  font-size: 1.5rem;
+  color: #ff3366;
+}
+
+.birthday-message {
+  font-size: 2rem;
+  color: #ff3366;
+  display: none;
+}
+#candle {
+  margin: 0 auto;
+  /* ortalamak için */
+}
+
