@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>20. Yaş Doğum Günü</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- styles.css dosyasını bağlıyoruz -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h2>20. Yaş Doğum Günün Kutlu Olsun!</h2>
+<div id="cake-container">
+    <img src="pasta.png" alt="Pasta">
+    <div id="candle"></div>
+</div>
+<div id="blow">Mumu Üfle 🎂</div>
+<div id="gift">🎁 Doğum Günün Kutlu Olsun! 🎁</div>
+
+<script>
+function initBlowDetection() {
+    if (!navigator.mediaDevices) {
+        alert("Tarayıcınız mikrofon erişimini desteklemiyor.");
+        return;
+    }
+
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const analyser = audioContext.createAnalyser();
+        const microphone = audioContext.createMediaStreamSource(stream);
+        microphone.connect(analyser);
+        analyser.fftSize = 256;
+
+        const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+        function detectBlow() {
+            analyser.getByteTimeDomainData(dataArray);
+            let sum = 0;
+
+            for (let i = 0; i < dataArray.length; i++) {
+                let value = dataArray[i] - 128;
+                sum += Math.abs(value);
+            }
+
+            let average = sum / dataArray.length;
+
+            if (average > 30) {
+                document.getElementById("cake-container").style.display = "none";
+                document.getElementById("blow").style.display = "none";
+                document.getElementById("gift").style.display = "block";
+            } else {
+                requestAnimationFrame(detectBlow);
+            }
+        }
+
+        detectBlow();
+    }).catch(error => {
+        alert("Mikrofon izni reddedildi veya bulunamıyor.");
+        console.error(error);
+    });
+}
+
+window.onload = initBlowDetection;
+</script>
+
+</body>
+</html>
