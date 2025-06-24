@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <title>20. Yaş Doğum Günü</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- styles.css dosyasını bağlıyoruz -->
+<!-- Styles dosyasını ekle -->
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <h2>20. Yaş Doğum Günün Kutlu Olsun!</h2>
-<div id="cake-container">
-    <img src="pasta.png" alt="Pasta">
-    <div id="candle"></div>
+<div id="cake">
+    <div class="candle"></div>
+    <div class="fire"></div>
 </div>
 <div id="blow">Mumu Üfle 🎂</div>
 <div id="gift">🎁 Doğum Günün Kutlu Olsun! 🎁</div>
@@ -45,7 +45,7 @@ function initBlowDetection() {
             let average = sum / dataArray.length;
 
             if (average > 30) {
-                document.getElementById("cake-container").style.display = "none";
+                document.getElementById("cake").style.display = "none";
                 document.getElementById("blow").style.display = "none";
                 document.getElementById("gift").style.display = "block";
             } else {

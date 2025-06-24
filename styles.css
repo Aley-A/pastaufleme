@@ -6,22 +6,48 @@ body {
     padding: 20px;
 }
 
-#cake-container {
-    margin: 20px auto;
-}
-
-#cake-container img {
+#cake {
     display: block;
-    margin: 0 auto;
-    max-width: 250px;
-    width: 100%;
-    height: auto;
+    position: relative;
+    margin: -10em auto 0 auto;
 }
 
-#candle {
-    font-size: 40px;
-    position: relative;
-    top: -30px;
+.candle {
+    background: #fff;
+    border-radius: 10px;
+    position: absolute;
+    top: 228px;
+    left: 50%;
+    margin-left: -2.4px;
+    margin-top: -8.33333333px;
+    width: 5px;
+    height: 35px;
+    transform: translateY(-300px);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-animation: in 600ms 6s ease-out forwards;
+    animation: in 600ms 6s ease-out forwards;
+}
+
+.candle:after {
+    top: 25%;
+    left: 0;
+}
+
+.candle:before {
+    top: 45%;
+    left: 0;
+}
+
+.fire {
+    border-radius: 100%;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -2.6px;
+    width: 6.667px;
+    height: 18px;
+    background: #ff0;
 }
 
 #blow {
