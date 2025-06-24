@@ -17,6 +17,7 @@ body {
   display: block;
   position: fixed;
   margin: auto;
+  top: -30px;
 }
 
 /* ============================================== Candle */
