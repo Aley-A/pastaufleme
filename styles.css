@@ -12,17 +12,32 @@ body {
   justify-content: center;
   align-items: center;
 }
+#message,
+#birthdayMsg,
+.text {
+  color: #684e46;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500px;
+  font-style: italic;
+  
+  position:fixed;      /* Sayfada sabit pozisyon */
+  top: 300px;              /* En üstte */
+  left: 50%;           /* Yatayda ortala için soldan %50 */
+  transform: translateX(-50%); /* Ortalamak için kaydır */
+  
+  text-align: center;   /* Yazıyı kendi içinde ortala */
+}
 
 #cake {
   display: block;
   position: fixed;
   margin: auto;
-  top: -30px;
+  top: -20px;
 }
 
 /* ============================================== Candle */
 .velas {
-  background: #fff;
+  background: #e8e5e5;
   border-radius: 10px;
   position: fixed;
   top: 228px;
@@ -35,9 +50,10 @@ body {
 }
 .velas:after,
 .velas:before {
-  background: rgba(255, 0, 0, 0.4);
+  background: rgba(195, 57, 158, 0.4);
   content: '';
   position: fixed;
+  margin:auto;
   width: 100%;
   height: 2.22px;
 }
@@ -71,7 +87,7 @@ body {
     transform: translateY(0) scale(1);
   }
   50% {
-    background: rgba(255, 50, 0, 0.1);
+    background: rgba(226, 218, 213, 0.1);
     box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
     transform: translateY(-20px) scale(0);
   }
@@ -83,17 +99,6 @@ body {
   }
 }
 
-/* ============================================== Text Styles */
-.text {
-  color: #8b6a60;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  font-style: italic;
-  text-align: center;
-}
 
-#message,
-#birthdayMsg {
-  font-size: 1.5rem;
-  margin-top: 20px;
-}
+
+
