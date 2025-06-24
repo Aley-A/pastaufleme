@@ -7,7 +7,7 @@ body {
 }
 
 body {
-  background: #ee9ca7;
+  background: #f2b5b5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,8 +87,8 @@ body {
     transform: translateY(0) scale(1);
   }
   50% {
-    background: rgba(226, 218, 213, 0.1);
-    box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
+    background: rgba(226, 220, 218, 0.1);
+    box-shadow: 0 0 40px 20px rgba(232, 227, 227, 0.2);
     transform: translateY(-20px) scale(0);
   }
 }
