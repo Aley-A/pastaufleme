@@ -1,79 +1,48 @@
-let isBlown = false;
 
-window.onload = async function() {
-  const flame = document.querySelector('.flame');
-  const message = document.getElementById('message');
-  const candle = document.querySelector('.candle');
+  window.addEventListener('DOMContentLoaded', () => {
+    const message = document.getElementById('message');
+    const birthdayMsg = document.getElementById('birthdayMsg');
 
-  // Pasta oluşumu bitince ("candle" çıktığında) mesajı göster
-  setTimeout(() => {
-    message.textContent = "Mumu üfle 💨";
-    message.addEventListener("click", blowOutCandle);
-    listenForBlow();
-  }, 4000);
+    async function listenForBlow() {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        message.textContent = 'Tarayıcınız mikrofonu desteklemiyor.';
+        return;
+      }
 
-  async function listenForBlow() {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const audioContext = new AudioContext();
-      const analyser = audioContext.createAnalyser();
-      const source = audioContext.createMediaStreamSource(stream);
-      source.connect(analyser);
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const audioCtx = new AudioContext();
+        const analyser = audioCtx.createAnalyser();
+        const source = audioCtx.createMediaStreamSource(stream);
+        source.connect(analyser);
 
-      const data = new Uint8Array(analyser.frequencyBinCount);
+        const dataArray = new Uint8Array(analyser.frequencyBinCount);
+        let blown = false;
 
-      function detectBlow() {
-        analyser.getByteFrequencyData(data);
-        const average = data.reduce((a, b) => a + b) / data.length;
+        function detectBlow() {
+          analyser.getByteFrequencyData(dataArray);
+          const average = dataArray.reduce((a, b) => a + b) / dataArray.length;
 
-        if (average > 60 && !isBlown) {
-          blowOutCandle();
-        } else {
-          requestAnimationFrame(detectBlow);
+          if (average > 50 && !blown) {
+            blown = true;
+            blowOut();
+          } else if (!blown) {
+            requestAnimationFrame(detectBlow);
+          }
         }
+
+        detectBlow();
+
+      } catch (e) {
+        message.textContent = 'Mikrofon izni vermelisiniz.';
+        console.error(e);
       }
-      detectBlow();
-    } catch (err) {
-      console.error("Mikrofon izni vermelisin:", err);
-      message.textContent = "Mikrofon izni vermelisin.";
     }
-  }
 
-  function blowOutCandle() {
-    if (!isBlown) {
-      isBlown = true;
-
-      flame.style.display = 'none';
-      if (candle) {
-        candle.classList.add('falling');
-      }
-
-      message.textContent = "Doğum Günün Kutlu Olsun! 🎉🎂";
-    }
-  }
-};
-window.onload = function() {
-  const candle = document.getElementById('candle');
-  const message = document.getElementById('message');
-  const birthdayMessage = document.getElementById('birthdayMessage');
-
-  // Başlangıçta sadece mum ve doğum günü mesajı gizli olsun
-  candle.style.display = 'none';
-  birthdayMessage.style.display = 'none';
-
-  // Animasyonun bittiğini dinle
-  const cremaAnim = document.getElementById('crema');
-  cremaAnim.addEventListener('endEvent', () => {
-    // Mum görünür olsun
-    candle.style.display = 'block';
-
-    // Mesajı değiştir
-    message.textContent = "Muma üfle";
-
-    // 3 saniye sonra "Doğum Günün Kutlu Olsun!" mesajı çıksın
-    setTimeout(() => {
+    function blowOut() {
       message.style.display = 'none';
-      birthdayMessage.style.display = 'block';
-    }, 3000);
+      birthdayMsg.style.display = 'block';
+    }
+
+    listenForBlow();
   });
-};

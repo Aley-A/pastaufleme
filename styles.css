@@ -1,106 +1,98 @@
-/* ===================================================
-   PASTA
-================================================== */
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic);
+
+html,
 body {
-  font-family: Arial, sans-serif;
-  background: #ffe6f2;
-  text-align: center;
-  margin: 0;
-  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.cake {
-  position: relative;
-  margin: 100px auto 20px auto;
-  width: 2px;
-  height: 1px;
-  background: #ff99cc;
-  border-radius: 10px;
+body {
+  background: #ee9ca7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* ===================================================
-   MUM
-================================================== */
+#cake {
+  display: block;
+  position: fixed;
+  margin: auto;
+}
+
+/* ============================================== Candle */
 .velas {
-  background: #ffffff;
-  border-radius: 5px;
-  position: absolute;
-  top: -50px;
+  background: #fff;
+  border-radius: 10px;
+  position: fixed;
+  top: 228px;
   left: 50%;
-  margin-left: -3px;
-  width: 6px;
-  height: 40px;
+  margin-left: -2.4px;
+  width: 5px;
+  height: 35px;
+  transform: translateY(-300px);
+  animation: in 500ms 6s ease-out forwards;
 }
-
 .velas:after,
 .velas:before {
   background: rgba(255, 0, 0, 0.4);
-  content: ""; 
-  position: absolute;
-  width: 100%; 
-  height: 3px;
+  content: '';
+  position: fixed;
+  width: 100%;
+  height: 2.22px;
 }
-
 .velas:after {
-  top: 25%; 
-  left: 0;
+  top: 25%;
 }
 .velas:before {
-  top: 45%; 
-  left: 0;
+  top: 45%;
 }
 
-/* ===================================================
-   ALEV
-================================================== */
+/* ============================================== Fire */
 .fuego {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  margin-left: -3px;
-  width: 6px;
-  height: 10px;
-  background: radial-gradient(ellipse at center, #ff9 0%, #ff6600 100%);
   border-radius: 100%;
-  animation: flameFlicker 1s infinite alternate;
+  position: fixed;
+  top: -20px;
+  left: 50%;
+  margin-left: -2.6px;
+  width: 6.667px;
+  height: 18px;
 }
+.fuego:nth-child(1) { animation: fuego 2s 6.5s infinite; }
+.fuego:nth-child(2) { animation: fuego 1.5s 6.5s infinite; }
+.fuego:nth-child(3) { animation: fuego 1s 6.5s infinite; }
+.fuego:nth-child(4) { animation: fuego 0.5s 6.5s infinite; }
+.fuego:nth-child(5) { animation: fuego 0.2s 6.5s infinite; }
 
-@keyframes flameFlicker {
-  from { transform: scaleY(1) translateY(0px) }
-  to { transform: scaleY(1.3) translateY(-3px) }
-}
-/* Mumun düşme animasyonu */
-.fuego.falling {
-  position: relative;
-  animation: fallDown 1s ease forwards;
-}
-
-@keyframes fallDown {
-  0% {
-    top: 0;
-    transform: rotate(0deg);
+@keyframes fuego {
+  0%, 100% {
+    background: rgba(254, 248, 97, 0.5);
+    box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
+    transform: translateY(0) scale(1);
   }
-  100% {
-    top: 100px;
-    transform: rotate(45deg);
+  50% {
+    background: rgba(255, 50, 0, 0.1);
+    box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
+    transform: translateY(-20px) scale(0);
   }
 }
 
-/* ===================================================
-   MESAJLAR
-================================================== */
-.message {
+@keyframes in {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ============================================== Text Styles */
+.text {
+  color: #8b6a60;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+}
+
+#message,
+#birthdayMsg {
   font-size: 1.5rem;
-  color: #ff3366;
+  margin-top: 20px;
 }
-
-.birthday-message {
-  font-size: 2rem;
-  color: #ff3366;
-  display: none;
-}
-#candle {
-  margin: 0 auto;
-  /* ortalamak için */
-}
-
